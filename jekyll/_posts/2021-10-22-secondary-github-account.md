@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "how to use a secondary github account from the terminal"
+date:   2021-10-22 15:24:29 -0400
+categories: git terminal
+---
+
 # how to use a secondary github account from the terminal
 
 ## introduction
@@ -97,14 +104,14 @@ To github-🍅:🍅/🥕
    b2a484f..9ef3ae5  main -> main
 ```
 
+## troubleshooting
+
 if you check your ID via `ssh`, it will still say your main account:
 
 ```sh
 ❯ ssh -T git@github.com
 Hi CouldBeThis! You've successfully authenticated, but GitHub does not provide shell access.
 ```
-
-## troubleshooting
 
 If you are having problems, here is how to determine which file is being applied
 
@@ -119,15 +126,15 @@ If you are having problems, here is how to determine which file is being applied
 
 * [Use multiple Git accounts from a single Linux machine](https://www.attosol.com/manage-multiple-git-accounts/)
 * [git - Multiple GitHub accounts on the same computer? - Stack Overflow](https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer)
-* [Configuration options | GitLab](https://docs.gitlab.com/omnibus/settings/configuration.html)
-* [A Note on Misconfiguring my SSH Config When Setting Up Two Github Accounts | Matthew J. Clemente](https://blog.mattclemente.com/2020/09/15/multiple-github-accounts-wildcard-ssh-config-identityfile/)
-* [A Practical Guide to Managing Multiple GitHub Accounts | by Fredrick Mgbeoma | The Andela Way | Medium](https://medium.com/the-andela-way/a-practical-guide-to-managing-multiple-github-accounts-8e7970c8fd46)
+* [Configuration options \| GitLab](https://docs.gitlab.com/omnibus/settings/configuration.html)
+* [A Note on Misconfiguring my SSH Config When Setting Up Two Github Accounts \| Matthew J. Clemente](https://blog.mattclemente.com/2020/09/15/multiple-github-accounts-wildcard-ssh-config-identityfile/)
+* [A Practical Guide to Managing Multiple GitHub Accounts \| by Fredrick Mgbeoma \| The Andela Way \| Medium](https://medium.com/the-andela-way/a-practical-guide-to-managing-multiple-github-accounts-8e7970c8fd46)
 
 
 -  [c-alpha/gituser: Set the user id in a git working copy quickly when using user.useConfigOnly](https://github.com/c-alpha/gituser)
 
 
-* [Modularizing your git config with conditional includes | Whisper of the Heartman](https://blog.thomasheartman.com/posts/modularizing-your-git-config-with-conditional-includes)
+* [Modularizing your git config with conditional includes \| Whisper of the Heartman](https://blog.thomasheartman.com/posts/modularizing-your-git-config-with-conditional-includes)
 * [Managing multiple Git profiles - DeepSource](https://deepsource.io/blog/managing-different-git-profiles/)
 * [git config - Is it possible to have different Git configuration for different projects? - Stack Overflow](https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects)
 * [Git Your Way: includeIf](https://nicknisi.com/posts/git-includeif/)
@@ -139,7 +146,7 @@ If you are having problems, here is how to determine which file is being applied
 - [microsoft/Git-Credential-Manager-Core](https://github.com/microsoft/Git-Credential-Manager-Core) - Secure, cross-platform Git credential storage with authentication to  GitHub, Azure Repos, and other popular Git hosting services. (No gitlab atm.)
 - poss useful: [Lazy man's guide: multiple GitHub HTTPS accounts on Windows](https://dev.to/configcat/lazy-man-s-guide-multiple-github-https-accounts-on-windows-2mad)
 
-[Using git with multiple profiles and GPG+SSH keys | markentier.tech](https://markentier.tech/posts/2021/02/github-with-multiple-profiles-gpg-ssh-keys/)
+[Using git with multiple profiles and GPG+SSH keys \| markentier.tech](https://markentier.tech/posts/2021/02/github-with-multiple-profiles-gpg-ssh-keys/)
 
 #### official documentation
 

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/HowToDo/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/HowToDo/" rel="alternate" type="text/html" /><updated>2021-10-22T15:36:16-04:00</updated><id>http://localhost:4000/HowToDo/feed.xml</id><title type="html">CouldBeThis - HowT🍅D🍅</title><subtitle>how did I do that...?
+</subtitle><entry><title type="html">how to use a secondary github account from the terminal</title><link href="http://localhost:4000/HowToDo/git/terminal/2021/10/22/secondary-github-account.html" rel="alternate" type="text/html" title="how to use a secondary github account from the terminal" /><published>2021-10-22T15:24:29-04:00</published><updated>2021-10-22T15:24:29-04:00</updated><id>http://localhost:4000/HowToDo/git/terminal/2021/10/22/secondary-github-account</id><content type="html" xml:base="http://localhost:4000/HowToDo/git/terminal/2021/10/22/secondary-github-account.html">&lt;h1 id=&quot;how-to-use-a-secondary-github-account-from-the-terminal&quot;&gt;how to use a secondary github account from the terminal&lt;/h1&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;introduction&lt;/h2&gt;
+
+&lt;p&gt;This has been a big headache for me for a long time. I want to use more than one github account. It is ridiculously difficult. For some reason none of of the various instructions I followed worked, until this one did. Links at bottom to various other resources on the same subject.&lt;/p&gt;
+
+&lt;p&gt;This is set up per-repo. More clever automated solutions exist, see links at bottom. But they never worked for me.&lt;/p&gt;
+
+&lt;p&gt;The instructions that finally cracked it for me: &lt;a href=&quot;https://code.tutsplus.com/tutorials/quick-tip-how-to-work-with-github-and-multiple-accounts--net-22574&quot;&gt;Quick Tip: How to Work with GitHub and Multiple Accounts&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This is not comprehensive at explaining how to use github, &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; or the terminal from scratch. It is just to fill in existing knowledge. Also I assume you do everything the same way I do. If you don’t like it feel free to return to the original tutorials.&lt;/p&gt;
+
+&lt;p&gt;Do it with an empty repo and make sure everything has gone correctly because if you screw it up it’s really not so easy to backtrack.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; replace the emojis&lt;/p&gt;
+
+&lt;p&gt;🍅 =  your secondary username&lt;/p&gt;
+
+&lt;p&gt;🥕 = repo name&lt;/p&gt;
+
+&lt;p&gt;create a new &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; key for use with new account in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/ssh/id_ed25519-🍅&lt;/code&gt; and add it to the keychain&lt;/p&gt;
+
+&lt;p&gt;add to &lt;code class=&quot;highlighter-rouge&quot;&gt;~/ssh/.config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host github-🍅
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/id_ed25519-🍅
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Create new repo locally:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ mkdir 🥕
+❯ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; 🥕
+❯ git init
+Initialized empty Git repository &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; 🥕/.git/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Make a tiny nothing commit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-sh\&quot;&gt;❯ git commit -m &quot;init git&quot;
+On branch main
+Initial commit
+nothing to commit (create/copy files and use &quot;git add&quot; to track)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Login to github and create 🥕 repo there&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Be sure to create the  &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sync local and remote:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ git remote add origin git@github-🍅:🍅/🥕
+❯ git pull origin main
+From github-🍅:🍅/🥕
+ &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; branch            main       -&amp;gt; FETCH_HEAD
+❯ ls
+README.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;open the &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt; make some tiny change and save it.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ nano README.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;edit your local  &lt;code class=&quot;highlighter-rouge&quot;&gt;🥕/git/config&lt;/code&gt; to add (use your correct commit email)&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;user]
+	name &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 🍅
+	email &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 000000+🍅@users.noreply.github.com 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;pull]
+	rebase &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch &lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+	remote &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; origin
+	merge &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; refs/heads/main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;send local files to remote&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ git add README.md
+❯ git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;change readme local&quot;&lt;/span&gt;
+
+❯ git push origin main
+Enumerating objects: 5, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Counting objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5/5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Writing objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3/3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 260 bytes &lt;span class=&quot;se&quot;&gt;\|&lt;/span&gt; 260.00 KiB/s, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Total 3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 0
+To github-🍅:🍅/🥕
+   b2a484f..9ef3ae5  main -&amp;gt; main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;troubleshooting&quot;&gt;troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;if you check your ID via &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt;, it will still say your main account:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ ssh -T git@github.com
+Hi CouldBeThis! You&lt;span class=&quot;s1&quot;&gt;'ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you are having problems, here is how to determine which file is being applied&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ git config --show-origin user.name
+❯ git config --show-origin user.email
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;other-useful-links&quot;&gt;other useful links&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.attosol.com/manage-multiple-git-accounts/&quot;&gt;Use multiple Git accounts from a single Linux machine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer&quot;&gt;git - Multiple GitHub accounts on the same computer? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gitlab.com/omnibus/settings/configuration.html&quot;&gt;Configuration options | GitLab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.mattclemente.com/2020/09/15/multiple-github-accounts-wildcard-ssh-config-identityfile/&quot;&gt;A Note on Misconfiguring my SSH Config When Setting Up Two Github Accounts | Matthew J. Clemente&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://medium.com/the-andela-way/a-practical-guide-to-managing-multiple-github-accounts-8e7970c8fd46&quot;&gt;A Practical Guide to Managing Multiple GitHub Accounts | by Fredrick Mgbeoma | The Andela Way | Medium&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/c-alpha/gituser&quot;&gt;c-alpha/gituser: Set the user id in a git working copy quickly when using user.useConfigOnly&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.thomasheartman.com/posts/modularizing-your-git-config-with-conditional-includes&quot;&gt;Modularizing your git config with conditional includes | Whisper of the Heartman&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://deepsource.io/blog/managing-different-git-profiles/&quot;&gt;Managing multiple Git profiles - DeepSource&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects&quot;&gt;git config - Is it possible to have different Git configuration for different projects? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nicknisi.com/posts/git-includeif/&quot;&gt;Git Your Way: includeIf&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://batsov.com/articles/2020/11/22/basic-git-setup/&quot;&gt;Basic Git Setup · (think)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/bgauduch/06a8c4ec2fec8fef6354afe94358c89e&quot;&gt;Git config with multiple identities and multiple repositories · GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Longer more complicated instructions using Keychain authentitcation: &lt;a href=&quot;https://dev.to/mtilson/how-to-set-git-for-multiple-github-accounts-3kbn&quot;&gt;How to set Git for multiple GitHub accounts - DEV&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/uncaught-exception/setting-up-multiple-github-accounts-the-nicer-way-5ab732078a7e&quot;&gt;Setting up multiple GitHub accounts, the nicer way&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/microsoft/Git-Credential-Manager-Core&quot;&gt;microsoft/Git-Credential-Manager-Core&lt;/a&gt; - Secure, cross-platform Git credential storage with authentication to  GitHub, Azure Repos, and other popular Git hosting services. (No gitlab atm.)&lt;/li&gt;
+  &lt;li&gt;poss useful: &lt;a href=&quot;https://dev.to/configcat/lazy-man-s-guide-multiple-github-https-accounts-on-windows-2mad&quot;&gt;Lazy man’s guide: multiple GitHub HTTPS accounts on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://markentier.tech/posts/2021/02/github-with-multiple-profiles-gpg-ssh-keys/&quot;&gt;Using git with multiple profiles and GPG+SSH keys | markentier.tech&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;official-documentation&quot;&gt;official documentation&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage&quot;&gt;Git - Credential Storage&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration&quot;&gt;Git - Git Configuration&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/docs/git-config&quot;&gt;Git - git-config Documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/docs/git-config#_includes&quot;&gt;Git - git-config - includes Documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/docs/gitcredentials&quot;&gt;Git - gitcredentials Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">how to use a secondary github account from the terminal</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/HowToDo/2021/10/22/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2021-10-22T00:00:00-04:00</published><updated>2021-10-22T00:00:00-04:00</updated><id>http://localhost:4000/HowToDo/2021/10/22/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/HowToDo/2021/10/22/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
