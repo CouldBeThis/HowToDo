@@ -15,6 +15,8 @@ This is set up per-repo. More clever automated solutions exist, see links at bot
 
 The instructions that finally cracked it for me: [Quick Tip: How to Work with GitHub and Multiple Accounts](https://code.tutsplus.com/tutorials/quick-tip-how-to-work-with-github-and-multiple-accounts--net-22574)
 
+## assumptions and variables
+
 This is not comprehensive at explaining how to use github, `git` or the terminal from scratch. It is just to fill in existing knowledge. Also I assume you do everything the same way I do. If you don't like it feel free to return to the original tutorials. 
 
 Do it with an empty repo and make sure everything has gone correctly because if you screw it up it's really not so easy to backtrack. 
@@ -25,7 +27,11 @@ Do it with an empty repo and make sure everything has gone correctly because if 
 
 🥕 = repo name
 
-create a new `ssh` key for use with new account in `~/ssh/id_ed25519-🍅` and add it to the keychain 
+## one time set up
+
+create a new `ssh` key for use with new account in `~/ssh/id_ed25519-🍅` and add it to the keychain 
+
+- Here is the official docs on how to do that: [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 add to `~/ssh/.config`:
 
@@ -35,6 +41,8 @@ Host github-🍅
 	User git
 	IdentityFile ~/.ssh/id_ed25519-🍅
 ```
+
+## for each repo you want to use your secondary identity
 
 Create new repo locally:
 
@@ -106,6 +114,8 @@ To github-🍅:🍅/🥕
 
 ## troubleshooting
 
+### primary account should stay authenticated via `ssh`
+
 if you check your ID via `ssh`, it will still say your main account:
 
 ```sh
@@ -113,7 +123,21 @@ if you check your ID via `ssh`, it will still say your main account:
 Hi CouldBeThis! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-If you are having problems, here is how to determine which file is being applied
+even if you are in a repo set up with secondary account, the primary one will appear. 
+
+It has happened to me once or twice somehow that the secondary account became what showed up here, but I do not know how or why. 
+
+When that happened I re added the key associated with this account to `ssh agent` (Mac): 
+
+```sh
+ssh-add ~/.ssh/id_ed25519-CouldBeThis
+```
+
+Which solved it. 
+
+### who am I?
+
+If you are having problems, here is how to determine which `git config` is being applied in case somehow there has been an error in that.  
 
 ```sh
 ❯ git config --show-origin user.name
