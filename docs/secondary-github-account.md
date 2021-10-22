@@ -18,7 +18,7 @@ Do it with an empty repo and make sure everything has gone correctly because if 
 
 🥕 = repo name
 
-create a new `ssh` key for use with new account in `~/ssh/id_ed25519-🍅`
+create a new `ssh` key for use with new account in `~/ssh/id_ed25519-🍅` and add it to the keychain 
 
 add to `~/ssh/.config`:
 
