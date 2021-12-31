@@ -4,6 +4,11 @@
 
 ### set up environment
 
+[Jekyll install instructions](https://jekyllrb.com/docs/)
+
+Other [Jekyll install instructions](https://jekyllrb.com/docs/installation/) | [Ubuntu instructions](https://jekyllrb.com/docs/installation/ubuntu/)
+
+
 #### ruby
 
 ```sh
